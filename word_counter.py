@@ -1,11 +1,36 @@
 import tkinter as tk
 from tkinter import scrolledtext
+import tkinter.messagebox
+from datetime import datetime
+import os
+import re
+
 
 def count_words():
     text = text_area.get("1.0", 'end-1c')
     words = text.split()
     word_count = len(words)
     count_label.config(text=f"Word count: {word_count}")
+
+def save_log():
+    text = text_area.get("1.0", 'end-1c')
+    words = text.split()
+    word_count = len(words)
+    current_date = datetime.now().strftime('%Y-%m-%d')
+    # If word count is more than 200, save the text in a log file.
+    if word_count > 200:
+        if os.path.exists("journal_log.txt"):
+            with open("journal_log.txt", "r") as file:
+                content = file.read()
+                # If an entry for the current date already exists, show a message and return.
+                if re.search(f"Date: {current_date}", content):
+                    tk.messagebox.showinfo("Info", "An entry for today already exists!")
+                    return
+        with open("journal_log.txt", "a") as file:
+            file.write(f"Date: {current_date}\n")
+            file.write(f"Entry: {text}\n\n")
+    else:
+        tk.messagebox.showinfo("Info", "Entry should be more than 200 words")
 
 root = tk.Tk()
 root.title("Word Counter")
@@ -53,7 +78,7 @@ count_button = tk.Button(button_frame, text="Count Words", command=count_words)
 count_button.pack(side=tk.LEFT)
 
 # Save Log
-save_log_button = tk.Button(button_frame, text="Save Log")
+save_log_button = tk.Button(button_frame, text="Save Log", command=save_log)
 save_log_button.pack(side=tk.RIGHT)
 
 # Words counted label
