@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox, scrolledtext
+from tkinter import scrolledtext
 
 def count_words():
     text = text_area.get("1.0", tk.END)
