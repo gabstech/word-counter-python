@@ -10,7 +10,10 @@ def count_words():
 root = tk.Tk()
 root.title("Word Counter")
 
-text_area = scrolledtext.ScrolledText(root, width=30, height=10, font=("Times New Roman", 20))
+exit_button = tk.Button(root, text='X', command=root.quit)
+exit_button.pack(side=tk.RIGHT, anchor=tk.N)
+
+text_area = scrolledtext.ScrolledText(root, width=30, height=10, font=("Times New Roman", 18))
 text_area.pack()
 
 count_button = tk.Button(root, text="Count Words", command=count_words)
