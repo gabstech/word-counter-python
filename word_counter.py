@@ -44,9 +44,17 @@ exit_button.pack(side=tk.RIGHT)
 text_area = scrolledtext.ScrolledText(frame, font=("Times New Roman", 18))
 text_area.grid(row=1, column=0, sticky='nsew')
 
+# Button frame
+button_frame = tk.Frame(frame)
+button_frame.grid(row=2, column=0, sticky='ew')
+
 # Count words button
-count_button = tk.Button(frame, text="Count Words", command=count_words)
-count_button.grid(row=2, column=0, sticky='ew')
+count_button = tk.Button(button_frame, text="Count Words", command=count_words)
+count_button.pack(side=tk.LEFT)
+
+# Save Log
+save_log_button = tk.Button(button_frame, text="Save Log")
+save_log_button.pack(side=tk.RIGHT)
 
 # Words counted label
 count_label = tk.Label(frame, text="", font=("Helvetica", 14), padx=10, pady=10)
