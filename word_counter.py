@@ -29,6 +29,7 @@ def save_log():
         with open("journal_log.txt", "a") as file:
             file.write(f"Date: {current_date}\n")
             file.write(f"Entry: {text}\n\n")
+            tk.messagebox.showinfo("Info", "Entry saved succesfully")
     else:
         tk.messagebox.showinfo("Info", "Entry should be more than 200 words")
 
